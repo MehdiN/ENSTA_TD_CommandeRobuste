@@ -34,3 +34,10 @@ z_sys2 = tzero( sys('sd','fs') );
 tfsys = tf(sys);
 bodeplot(sys({'ab','sd'},{'fs','r'}))
 
+%% 
+
+act = tf(1,[1/60 1])
+actSys = tf2ss(act)
+
+actSys = actSys*(1+Wunc*unc)
+

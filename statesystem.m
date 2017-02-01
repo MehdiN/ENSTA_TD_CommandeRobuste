@@ -4,7 +4,7 @@ mb=300; %kg
 mw=60; %kg
 bs=1000;
 ks=16000;
-kt=19000;
+kt=190000;
 
 % <<<<<<< Updated upstream
 % dx(1) = x(2);
@@ -19,7 +19,8 @@ kt=19000;
 A = [0 1 0 0;
     -ks/mb -bs/mb ks/mb bs/mb;
     0 0 0 1;
-    ks/mw ks/mw -bs/mw-kt -bs/mw];
+    ks/mw bs/mw -(ks+kt)/mw -bs/mw];
+
 B = [ 0 0;
       0 1/mb;
       0 0;

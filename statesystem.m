@@ -31,9 +31,14 @@ C = [1 0 0 0;
 
 D = [0 0;0 0;0 1/mb];
 
-sys = ss(A,B,C,D);
-sys.InputName = {'r','fs'};
-sys.OutputName = {'xb','sd','ab'};
-z= tzero(sys,{'xb','sd','ab'});
+sys = ss(A,B,C,D,'StateName',{'dx1' 'dx2','dx3','dx4'},...
+                    'InputName',{'r','fs'},...
+                    'OutputName',{'xb','sd','ab'});
+
 tfsys = tf(sys);
-bodeplot(sys)
+
+                
+z1= tzero(sys({'xb','ab'},'fs'));
+z2=tzero(sys('sd','fs'));
+
+bodeplot(sys({'ab','sd'},{'fs','r'}));

@@ -29,6 +29,11 @@ C = [1 0 0 0;
     1 0 -1 0;
     -ks/mb -bs/mb ks/mb bs/mb];
 
-D = [];
+D = [0 0;0 0;0 1/mb];
 
 sys = ss(A,B,C,D);
+sys.InputName = {'r','fs'};
+sys.OutputName = {'xb','sd','ab'};
+z= tzero(sys);
+tfsys = tf(sys);
+bodeplot(sys)
